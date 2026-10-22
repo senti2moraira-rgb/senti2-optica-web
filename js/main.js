@@ -151,6 +151,7 @@ menu.querySelectorAll('.menu__desplegar').forEach(function (boton) {
 const pestanas = document.querySelectorAll('.pestanas [role="tab"]');
 
 function activarPestana(pestana) {
+  limpiarBusqueda(); // si había una búsqueda activa, volvemos a mostrar todas las gafas
   pestanas.forEach(function (p) {
     const activa = p === pestana;
     p.setAttribute('aria-selected', activa);
@@ -196,7 +197,17 @@ const buscador = document.querySelector('.buscador');
 
 // Quitamos tildes y mayúsculas para que "chloe" encuentre "Chloé"
 function normalizar(texto) {
-  return texto.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+  return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+}
+
+// Deshace una búsqueda: vuelve a mostrar todas las gafas y borra el aviso
+function limpiarBusqueda() {
+  document.querySelectorAll('.producto').forEach(function (producto) {
+    producto.hidden = false;
+  });
+  const aviso = document.getElementById('aviso-busqueda');
+  if (aviso) aviso.remove();
+  if (buscador) buscador.querySelector('input').value = '';
 }
 
 function buscar(texto) {
@@ -210,9 +221,15 @@ function buscar(texto) {
     if (coincide) encontrados++;
   });
 
+  // Sin texto, volvemos a la pestaña que estaba activa
+  if (!busqueda) {
+    activarPestana(document.querySelector('.pestanas [aria-selected="true"]'));
+    return;
+  }
+
   // Con una búsqueda mostramos los dos paneles (solares y graduadas)
   document.querySelectorAll('.productos').forEach(function (panel) {
-    panel.hidden = busqueda ? false : panel.id !== 'panel-solares';
+    panel.hidden = false;
   });
 
   // Mensaje con el resultado
@@ -224,7 +241,7 @@ function buscar(texto) {
     aviso.setAttribute('role', 'status');
     document.querySelector('.pestanas').after(aviso);
   }
-  aviso.textContent = !busqueda ? '' : encontrados
+  aviso.textContent = encontrados
     ? 'Resultados para «' + texto.trim() + '»: ' + encontrados
     : 'Ahora mismo no tenemos «' + texto.trim() + '» entre las novedades de la web, pero sí en tienda. ¡Pregúntanos!';
 

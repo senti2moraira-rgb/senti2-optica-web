@@ -19,8 +19,7 @@
    11. Servicios
    12. Conoce Senti2
    13. Opiniones
-   14. Instagram
-   15. Franja de confianza
+   14. Franja de confianza
    16. Newsletter
    17. Pie de página
    18. WhatsApp flotante y banner de cookies
@@ -242,13 +241,6 @@ h2 em {
 .boton--claro:hover {
   background-color: var(--marfil);
 }
-.boton--turquesa {
-  background-color: var(--turquesa-oscuro);
-  color: var(--blanco);
-}
-.boton--turquesa:hover {
-  background-color: var(--carbon);
-}
 .boton--borde {
   border-color: var(--carbon);
 }
@@ -265,6 +257,12 @@ h2 em {
   color: var(--carbon);
 }
 
+/* Botón pequeño (pie de página y cabecera de las páginas legales) */
+.boton--pequeno {
+  padding: 10px 18px;
+  font-size: 11px;
+}
+
 .botones {
   display: flex;
   flex-wrap: wrap;
@@ -272,12 +270,10 @@ h2 em {
 }
 
 /* Enlace de texto con subrayado que se dibuja al pasar el ratón */
-.enlace-animado,
 .menu__lista > li > a,
 .menu__desplegar {
   position: relative;
 }
-.enlace-animado::after,
 .menu__lista > li > a::after,
 .menu__desplegar::after {
   content: "";
@@ -291,7 +287,6 @@ h2 em {
   transform-origin: right;
   transition: transform var(--transicion);
 }
-.enlace-animado:hover::after,
 .menu__lista > li > a:hover::after,
 .menu__desplegar:hover::after,
 .tiene-mega:focus-within .menu__desplegar::after {
@@ -1126,32 +1121,7 @@ h2 em {
 
 
 /* =====================================================================
-   14. INSTAGRAM (rejilla de 6)
-   ===================================================================== */
-.instagram__rejilla {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--espacio-s);
-}
-.instagram__rejilla li {
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: var(--radio);
-  background-color: var(--marfil);
-}
-.instagram__rejilla img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-.instagram__rejilla li:hover img {
-  transform: scale(1.06);
-}
-
-
-/* =====================================================================
-   15. FRANJA DE CONFIANZA (justo debajo de la portada)
+   14. FRANJA DE CONFIANZA (justo debajo de la portada)
    ===================================================================== */
 .confianza {
   padding-block: var(--espacio-m);
@@ -1184,7 +1154,7 @@ h2 em {
 
 
 /* =====================================================================
-   15c. PIDE TU CITA — tres tarjetas-enlace
+   14c. PIDE TU CITA — tres tarjetas-enlace
    ===================================================================== */
 .cita {
   background-color: var(--turquesa-claro);
@@ -1243,7 +1213,7 @@ h2 em {
 
 
 /* =====================================================================
-   15b. PREGUNTAS FRECUENTES
+   14b. PREGUNTAS FRECUENTES
    <details> + <summary> se abren y cierran sin JavaScript
    ===================================================================== */
 .faq__caja {
@@ -1685,10 +1655,6 @@ h2 em {
 
   .opiniones__lista {
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  .instagram__rejilla {
-    grid-template-columns: repeat(4, 1fr);
   }
 
   .confianza__lista {
