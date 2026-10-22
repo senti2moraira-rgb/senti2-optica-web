@@ -1,0 +1,6 @@
+# Permite a todos los buscadores leer la web y les dice dónde está el mapa.
+# PENDIENTE: si el dominio definitivo no es senti2moraira.com, cámbialo aquí y en sitemap.xml
+User-agent: *
+Allow: /
+
+Sitemap: https://www.senti2moraira.com/sitemap.xml

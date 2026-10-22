@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" role="img" aria-label="Senti2 Óptica">
+  <!-- Ondas: barras verticales de distintas alturas, como en el logo original -->
+  <g fill="#1f1f1f">
+    <rect x="4.5"   y="25" width="3" height="10" rx="1.5"/>
+    <rect x="10.5"  y="22" width="3" height="16" rx="1.5"/>
+    <rect x="16.5"  y="18" width="3" height="24" rx="1.5"/>
+    <rect x="22.5"  y="15" width="3" height="30" rx="1.5"/>
+    <rect x="28.5"  y="19" width="3" height="22" rx="1.5"/>
+    <rect x="34.5"  y="11" width="3" height="38" rx="1.5"/>
+    <rect x="40.5"  y="7"  width="3" height="46" rx="1.5"/>
+    <rect x="46.5"  y="4"  width="3" height="52" rx="1.5"/>
+    <rect x="52.5"  y="2"  width="3" height="56" rx="1.5"/>
+    <rect x="64.5"  y="2"  width="3" height="56" rx="1.5"/>
+    <rect x="70.5"  y="4"  width="3" height="52" rx="1.5"/>
+    <rect x="76.5"  y="7"  width="3" height="46" rx="1.5"/>
+    <rect x="82.5"  y="11" width="3" height="38" rx="1.5"/>
+    <rect x="88.5"  y="19" width="3" height="22" rx="1.5"/>
+    <rect x="94.5"  y="15" width="3" height="30" rx="1.5"/>
+    <rect x="100.5" y="18" width="3" height="24" rx="1.5"/>
+    <rect x="106.5" y="22" width="3" height="16" rx="1.5"/>
+    <rect x="112.5" y="25" width="3" height="10" rx="1.5"/>
+  </g>
+  <!-- Círculo turquesa del centro, con un borde blanco para separarlo de las barras -->
+  <circle cx="60" cy="30" r="14" fill="#1a9e96" stroke="#ffffff" stroke-width="3"/>
+</svg>
