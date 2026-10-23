@@ -257,12 +257,6 @@ h2 em {
   color: var(--carbon);
 }
 
-/* Botón pequeño (pie de página y cabecera de las páginas legales) */
-.boton--pequeno {
-  padding: 10px 18px;
-  font-size: 11px;
-}
-
 .botones {
   display: flex;
   flex-wrap: wrap;
@@ -750,7 +744,7 @@ h2 em {
   margin-bottom: 4px;
 }
 
-/* Consejos (tarjeta blanca) y urgencias (tarjeta con acento rojo), lado a lado */
+/* Consejos (tarjeta blanca) y enlace a la guía completa, lado a lado */
 .habitos {
   display: grid;
   gap: var(--espacio-m);
@@ -759,42 +753,29 @@ h2 em {
 .habitos .lista-check li {
   font-size: 15px;
 }
-.urgencias {
-  padding: var(--espacio-l) var(--espacio-m);
-  background-color: var(--blanco);
-  border-radius: var(--radio);
-  border-top: 3px solid #e0645c;
-  box-shadow: var(--sombra);
-}
-.urgencias h3 {
-  font-size: 26px;
+.salud__tarjeta--guia > p {
+  color: var(--gris);
   margin-bottom: var(--espacio-s);
 }
-.urgencias li {
-  position: relative;
-  padding: 10px 0 10px 30px;
-  font-size: 15px;
-  border-bottom: 1px solid var(--marfil-oscuro);
+/* Temas de la guía como etiquetas-enlace */
+.guia-temas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: var(--espacio-m);
 }
-.urgencias li::before {
-  content: "!";
-  position: absolute;
-  left: 0;
-  top: 12px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #e0645c;
-  color: var(--blanco);
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 20px;
-  text-align: center;
-}
-.urgencias p {
-  margin-top: var(--espacio-s);
+.guia-temas a {
+  display: block;
+  padding: 6px 14px;
+  border: 1px solid rgba(18, 117, 111, 0.3);
+  border-radius: 999px;
   font-size: 14px;
-  color: var(--gris);
+  color: var(--turquesa-oscuro);
+  transition: background-color var(--transicion), color var(--transicion);
+}
+.guia-temas a:hover {
+  background-color: var(--turquesa-oscuro);
+  color: var(--blanco);
 }
 
 /* Aviso final, pequeño y centrado */
