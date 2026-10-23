@@ -400,6 +400,42 @@ h2 em {
   font-size: 11px;
 }
 
+/* Selector de idioma: ES · EN · DE · FR */
+.idiomas {
+  display: none;              /* en móvil va dentro del menú */
+  align-items: center;
+  gap: 2px;
+}
+.idiomas a {
+  padding: 6px 7px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gris);
+  border-radius: var(--radio);
+  transition: color var(--transicion), background-color var(--transicion);
+}
+.idiomas a:hover {
+  color: var(--carbon);
+}
+.idiomas a[aria-current="page"] {
+  color: var(--turquesa-oscuro);
+  background-color: var(--turquesa-claro);
+}
+/* En el menú móvil, los idiomas con su nombre completo, en fila */
+.menu__idiomas .idiomas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: var(--espacio-m) 0;
+}
+.menu__idiomas .idiomas a {
+  padding: 8px 14px;
+  font-size: 12px;
+  border: 1px solid var(--marfil-oscuro);
+}
+
 /* Botón-icono (favoritos) */
 .icono-boton {
   display: none; /* en móvil lo ocultamos para ganar espacio */
@@ -1796,6 +1832,13 @@ h2 em {
     border: 0;
     background: transparent;
     outline: none;
+  }
+
+  .idiomas {
+    display: flex;
+  }
+  .menu__idiomas {
+    display: none;
   }
 
   /* --- Menú horizontal --- */

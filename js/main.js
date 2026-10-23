@@ -25,6 +25,57 @@ document.documentElement.classList.add('js');
 // ¿La persona ha pedido "menos movimiento" en su sistema?
 const menosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Textos que escribe el JavaScript, en el idioma de la página (<html lang="…">).
+// Las partes entre llaves {q} {n} {h} {d} se rellenan con el dato real.
+const TEXTOS = {
+  es: {
+    abrirMenu: 'Abrir menú', cerrarMenu: 'Cerrar menú',
+    resultados: 'Resultados para «{q}»: {n}',
+    sinResultados: 'Ahora mismo no tenemos «{q}» entre las novedades de la web, pero sí en tienda. ¡Pregúntanos!',
+    abierto: 'Abierto ahora · hasta las {h}', cerrado: 'Cerrado ahora · {p}',
+    abreHoy: 'abre hoy a las {h}', abreManana: 'abre mañana a las {h}',
+    abreDia: 'abre el {d} a las {h}', abreDiaFecha: 'abre el {d} {n} a las {h}',
+    dias: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
+    newsletter: 'Formulario en pruebas: todavía no está conectado a un servicio de correo.'
+  },
+  en: {
+    abrirMenu: 'Open menu', cerrarMenu: 'Close menu',
+    resultados: 'Results for “{q}”: {n}',
+    sinResultados: '“{q}” is not among the new arrivals on the website right now, but we do have it in store. Just ask us!',
+    abierto: 'Open now · until {h}', cerrado: 'Closed now · {p}',
+    abreHoy: 'opens today at {h}', abreManana: 'opens tomorrow at {h}',
+    abreDia: 'opens on {d} at {h}', abreDiaFecha: 'opens on {d} {n} at {h}',
+    dias: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    newsletter: 'Test form: it is not connected to a mailing service yet.'
+  },
+  de: {
+    abrirMenu: 'Menü öffnen', cerrarMenu: 'Menü schließen',
+    resultados: 'Ergebnisse für „{q}“: {n}',
+    sinResultados: '„{q}“ ist derzeit nicht unter den Neuheiten auf der Website, aber im Geschäft. Fragen Sie uns!',
+    abierto: 'Jetzt geöffnet · bis {h} Uhr', cerrado: 'Jetzt geschlossen · {p}',
+    abreHoy: 'öffnet heute um {h} Uhr', abreManana: 'öffnet morgen um {h} Uhr',
+    abreDia: 'öffnet am {d} um {h} Uhr', abreDiaFecha: 'öffnet am {d}, dem {n}., um {h} Uhr',
+    dias: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+    newsletter: 'Testformular: noch nicht mit einem E-Mail-Dienst verbunden.'
+  },
+  fr: {
+    abrirMenu: 'Ouvrir le menu', cerrarMenu: 'Fermer le menu',
+    resultados: 'Résultats pour « {q} » : {n}',
+    sinResultados: '« {q} » ne figure pas parmi les nouveautés du site pour le moment, mais nous l’avons en boutique. Demandez-nous !',
+    abierto: 'Ouvert · jusqu’à {h}', cerrado: 'Fermé · {p}',
+    abreHoy: 'ouvre aujourd’hui à {h}', abreManana: 'ouvre demain à {h}',
+    abreDia: 'ouvre {d} à {h}', abreDiaFecha: 'ouvre {d} {n} à {h}',
+    dias: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
+    newsletter: 'Formulaire en test : pas encore relié à un service d’e-mailing.'
+  }
+};
+const IDIOMA = (document.documentElement.lang || 'es').slice(0, 2);
+const T = TEXTOS[IDIOMA] || TEXTOS.es;
+// t('abierto', { h: '19:00' }) → "Abierto ahora · hasta las 19:00"
+function t(clave, datos) {
+  return T[clave].replace(/\{(\w+)\}/g, function (todo, k) { return datos[k]; });
+}
+
 
 // ---------- 1. BARRA SUPERIOR: MENSAJES QUE ROTAN ----------
 const listaMensajes = document.querySelector('.barra-superior__mensajes');
@@ -111,7 +162,7 @@ const menu = document.getElementById('menu-principal');
 function abrirCerrarMenu(abrir) {
   menu.classList.toggle('menu--abierto', abrir);
   botonMenu.setAttribute('aria-expanded', abrir);
-  botonMenu.setAttribute('aria-label', abrir ? 'Cerrar menú' : 'Abrir menú');
+  botonMenu.setAttribute('aria-label', abrir ? T.cerrarMenu : T.abrirMenu);
   // Mientras el menú está abierto, la página de detrás no se mueve
   document.body.style.overflow = abrir ? 'hidden' : '';
 }
@@ -242,8 +293,8 @@ function buscar(texto) {
     document.querySelector('.pestanas').after(aviso);
   }
   aviso.textContent = encontrados
-    ? 'Resultados para «' + texto.trim() + '»: ' + encontrados
-    : 'Ahora mismo no tenemos «' + texto.trim() + '» entre las novedades de la web, pero sí en tienda. ¡Pregúntanos!';
+    ? t('resultados', { q: texto.trim(), n: encontrados })
+    : t('sinResultados', { q: texto.trim() });
 
   document.getElementById('novedades').scrollIntoView();
 }
@@ -351,10 +402,9 @@ function estadoTienda() {
   // Si está cerrado, buscamos cuándo abre la próxima vez (hoy o en los días siguientes)
   let proximaApertura = '';
   if (!tramoAbierto) {
-    const nombres = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
     const tramoHoy = tramos.find(function (t) { return minutos < t[0]; });
     if (tramoHoy) {
-      proximaApertura = 'abre hoy a las ' + hora(tramoHoy[0]);
+      proximaApertura = t('abreHoy', { h: hora(tramoHoy[0]) });
     } else {
       // Recorremos los días siguientes saltando festivos
       const hoyUTC = Date.UTC(Number(dato('year')), Number(dato('month')) - 1, Number(dato('day')));
@@ -363,7 +413,10 @@ function estadoTienda() {
         const fechaSiguiente = new Date(hoyUTC + i * 86400000).toISOString().slice(0, 10);
         const tramosSiguiente = tramosDelDia(fechaSiguiente, d);
         if (tramosSiguiente.length) {
-          proximaApertura = 'abre ' + (i === 1 ? 'mañana' : i < 7 ? 'el ' + nombres[d] : 'el ' + nombres[d] + ' ' + Number(fechaSiguiente.slice(8))) + ' a las ' + hora(tramosSiguiente[0][0]);
+          const h = hora(tramosSiguiente[0][0]);
+          proximaApertura = i === 1 ? t('abreManana', { h: h })
+            : i < 7 ? t('abreDia', { d: T.dias[d], h: h })
+            : t('abreDiaFecha', { d: T.dias[d], n: Number(fechaSiguiente.slice(8)), h: h });
           break;
         }
       }
@@ -374,8 +427,8 @@ function estadoTienda() {
     etiqueta.classList.toggle('estado-tienda--abierto', Boolean(tramoAbierto));
     etiqueta.classList.toggle('estado-tienda--cerrado', !tramoAbierto);
     etiqueta.textContent = tramoAbierto
-      ? 'Abierto ahora · hasta las ' + hora(tramoAbierto[1])
-      : 'Cerrado ahora · ' + proximaApertura;
+      ? t('abierto', { h: hora(tramoAbierto[1]) })
+      : t('cerrado', { p: proximaApertura });
   });
 }
 estadoTienda();
@@ -422,7 +475,7 @@ if (formulario) {
       aviso.setAttribute('role', 'status');
       formulario.appendChild(aviso);
     }
-    aviso.textContent = 'Formulario en pruebas: todavía no está conectado a un servicio de correo.';
+    aviso.textContent = T.newsletter;
   });
 }
 

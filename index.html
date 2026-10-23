@@ -12,9 +12,16 @@
   <title>Óptica en Moraira · Senti2 | Revisión de la vista y gafas</title>
   <meta name="description" content="Óptica y optometría en Moraira: revisión de la vista por ópticos-optometristas, lentillas, progresivos y gafas de Cartier, Dita o Face à Face. C/ Marjaleta, 3.">
 
-  <!-- Dirección "oficial" de esta página (evita contenido duplicado).
-       PENDIENTE: confirmar el dominio (Google muestra senti2moraira.com) -->
+  <!-- Dirección "oficial" de esta página (evita contenido duplicado) -->
   <link rel="canonical" href="https://www.senti2moraira.com/">
+
+  <!-- Versiones en otros idiomas (le dicen a Google cuál mostrar a cada visitante).
+       Las páginas traducidas están en las carpetas en/, de/ y fr/ -->
+  <link rel="alternate" hreflang="es" href="https://www.senti2moraira.com/">
+  <link rel="alternate" hreflang="en" href="https://www.senti2moraira.com/en/">
+  <link rel="alternate" hreflang="de" href="https://www.senti2moraira.com/de/">
+  <link rel="alternate" hreflang="fr" href="https://www.senti2moraira.com/fr/">
+  <link rel="alternate" hreflang="x-default" href="https://www.senti2moraira.com/">
 
   <!-- Datos para Google sobre la ubicación -->
   <meta name="geo.region" content="ES-A">
@@ -164,6 +171,13 @@
       </form>
 
       <div class="cabecera__acciones">
+        <!-- Selector de idioma. En móvil se oculta aquí y aparece al final del menú -->
+        <nav class="idiomas" aria-label="Idioma">
+          <a href="index.html" hreflang="es" lang="es" aria-current="page">ES</a>
+          <a href="en/index.html" hreflang="en" lang="en">EN</a>
+          <a href="de/index.html" hreflang="de" lang="de">DE</a>
+          <a href="fr/index.html" hreflang="fr" lang="fr">FR</a>
+        </nav>
         <a href="tel:+34966490440" class="icono-boton" aria-label="Llamar al 966 49 04 40">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
         </a>
@@ -277,6 +291,14 @@
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#tienda">Nuestra tienda</a></li>
         <li><a href="#cita">Cita y contacto</a></li>
+        <li class="menu__idiomas">
+          <nav class="idiomas" aria-label="Idioma">
+            <a href="index.html" hreflang="es" lang="es" aria-current="page">Español</a>
+            <a href="en/index.html" hreflang="en" lang="en">English</a>
+            <a href="de/index.html" hreflang="de" lang="de">Deutsch</a>
+            <a href="fr/index.html" hreflang="fr" lang="fr">Français</a>
+          </nav>
+        </li>
       </ul>
     </nav>
   </header>
