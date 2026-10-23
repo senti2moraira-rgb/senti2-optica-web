@@ -400,40 +400,78 @@ h2 em {
   font-size: 11px;
 }
 
-/* Selector de idioma: ES · EN · DE · FR */
+/* Selector de idioma: ES · EN · DE · FR, en una pastilla con icono de globo */
 .idiomas {
   display: none;              /* en móvil va dentro del menú */
   align-items: center;
   gap: 2px;
+  padding: 3px 4px 3px 10px;
+  border: 1px solid var(--marfil-oscuro);
+  border-radius: 999px;
+}
+.idiomas__icono {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  fill: none;
+  stroke: var(--turquesa-oscuro);
+  stroke-width: 1.6;
+  stroke-linecap: round;
 }
 .idiomas a {
-  padding: 6px 7px;
-  font-size: 11px;
+  padding: 6px 8px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gris);
-  border-radius: var(--radio);
+  color: var(--carbon);
+  border-radius: 999px;
   transition: color var(--transicion), background-color var(--transicion);
 }
 .idiomas a:hover {
-  color: var(--carbon);
+  background-color: var(--marfil);
 }
 .idiomas a[aria-current="page"] {
-  color: var(--turquesa-oscuro);
-  background-color: var(--turquesa-claro);
+  color: var(--blanco);
+  background-color: var(--turquesa-oscuro);
 }
-/* En el menú móvil, los idiomas con su nombre completo, en fila */
+/* En el menú móvil, los idiomas van los primeros, con etiqueta y nombre completo */
 .menu__idiomas .idiomas {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
   padding: var(--espacio-m) 0;
+  border: 0;
+}
+.idiomas__etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--turquesa-oscuro);
 }
 .menu__idiomas .idiomas a {
   padding: 8px 14px;
-  font-size: 12px;
   border: 1px solid var(--marfil-oscuro);
+}
+.menu__idiomas .idiomas a[aria-current="page"] {
+  border-color: var(--turquesa-oscuro);
+}
+
+/* Aviso de idiomas en la barra superior (rota con los demás mensajes) */
+.barra-superior__idiomas .idiomas__icono {
+  display: inline-block;
+  vertical-align: -3px;
+  stroke: var(--blanco);
+  margin-right: 2px;
+}
+.barra-superior__idiomas a {
+  margin: 0 2px;
 }
 
 /* Botón-icono (favoritos) */
