@@ -1902,10 +1902,10 @@ h2 em {
     gap: 64px var(--espacio-l);   /* en ordenador, más aire entre gafas */
   }
 
-  /* 6 servicios en 3 columnas = 2 filas completas */
+  /* 8 servicios en 4 columnas = 2 filas completas */
   .servicios__lista {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 64px var(--espacio-l);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 64px var(--espacio-m);
   }
 
   .salud__intro {

@@ -58,7 +58,7 @@
     "@context": "https://schema.org",
     "@type": "Optician",
     "name": "Senti2 Óptica",
-    "description": "Establecimiento sanitario de óptica en Moraira: revisión de la vista por ópticos-optometristas, lentes de contacto, lentes progresivas y gafas graduadas y de sol de primeras marcas.",
+    "description": "Establecimiento sanitario de óptica en Moraira: revisión de la vista por ópticos-optometristas con tonometría y retinografía, lentes de contacto, lentes progresivas y gafas graduadas y de sol de primeras marcas.",
     "image": [
       "https://www.senti2moraira.com/img/tienda/senti2-tienda-expositor-mesa.jpg",
       "https://www.senti2moraira.com/img/tienda/senti2-tienda-vitrinas-lujo.jpg",
@@ -103,6 +103,8 @@
         "acceptedAnswer": { "@type": "Answer", "text": "Recomendamos una primera revisión hacia los 3 años y, en edad escolar, una vez al año." } },
       { "@type": "Question", "name": "¿Quién realiza la revisión de la vista?",
         "acceptedAnswer": { "@type": "Answer", "text": "Un óptico-optometrista titulado y colegiado. Si detectamos algo que requiera atención médica, te derivamos al oftalmólogo." } },
+      { "@type": "Question", "name": "¿Medís la tensión ocular y hacéis fotografía del fondo de ojo?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. La revisión incluye tonometría, la medida de la presión intraocular, y retinografía, una fotografía digital del fondo de ojo que permite valorar la retina y el nervio óptico y seguir su evolución." } },
       { "@type": "Question", "name": "¿Dónde está la óptica Senti2 en Moraira?",
         "acceptedAnswer": { "@type": "Answer", "text": "En la C/ Marjaleta, 3, 03724 Moraira (Alicante), en el centro del pueblo." } },
       { "@type": "Question", "name": "¿Cuál es vuestro horario?",
@@ -349,9 +351,7 @@
             </div>
           </div>
 
-          <!-- Lista con marcas de verificación.
-               PENDIENTE: confirmar qué pruebas hacéis y añadir las que falten
-               (por ejemplo: tonometría / presión ocular, retinografía, topografía) -->
+          <!-- Lista con marcas de verificación: las pruebas de la revisión -->
           <div class="salud__tarjeta">
             <h3>Qué incluye la revisión</h3>
             <ul class="lista-check">
@@ -360,6 +360,8 @@
               <li>Graduación (refracción) objetiva y subjetiva</li>
               <li>Visión binocular: cómo trabajan juntos tus dos ojos</li>
               <li>Revisión del aspecto externo y la superficie del ojo</li>
+              <li>Tonometría: medida de la presión intraocular</li>
+              <li>Retinografía: fotografía digital del fondo de ojo</li>
               <li>Consejo personalizado y derivación al oftalmólogo si es necesario</li>
             </ul>
           </div>
@@ -478,7 +480,7 @@
 
 
     <!-- ==========================================================
-         SERVICIOS — 6 servicios en rejilla de 3 x 2
+         SERVICIOS — 8 servicios en rejilla de 4 x 2 (2 x 4 en tablet)
          ========================================================== -->
     <section class="seccion servicios" id="servicios" aria-labelledby="servicios-titulo">
       <div class="contenedor">
@@ -491,6 +493,18 @@
             <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 24s7-13 20-13 20 13 20 13-7 13-20 13S4 24 4 24z"/><circle cx="24" cy="24" r="6"/></svg>
             <h3>Revisión optométrica</h3>
             <p>Graduación completa y control de tu salud visual, con equipos actuales y sin prisas.</p>
+          </li>
+          <li class="servicio" id="tonometria">
+            <!-- Icono: ojo con indicador de presión -->
+            <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 26s7-12 20-12 20 12 20 12-7 12-20 12S4 26 4 26z"/><circle cx="24" cy="26" r="5"/><path d="M16 8a9 9 0 0 1 16 0"/><path d="M24 12V8"/></svg>
+            <h3>Tonometría</h3>
+            <p>Medida de la presión intraocular, rápida e indolora. Es la prueba clave para la detección precoz del glaucoma, especialmente a partir de los 40 años.</p>
+          </li>
+          <li class="servicio" id="retinografia">
+            <!-- Icono: cámara con el ojo como objetivo -->
+            <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="14" width="38" height="26" rx="3"/><path d="M17 14l3-5h8l3 5"/><circle cx="24" cy="27" r="8"/><circle cx="24" cy="27" r="3"/><path d="M36 20h2"/></svg>
+            <h3>Retinografía</h3>
+            <p>Fotografía digital del fondo de ojo para valorar la retina, la mácula y el nervio óptico, y comparar su evolución en cada revisión.</p>
           </li>
           <li class="servicio" id="lentes-de-contacto">
             <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 26c0-9 7-16 16-16s16 7 16 16"/><path d="M8 26c5 4 11 6 16 6s11-2 16-6"/></svg>
@@ -860,6 +874,10 @@
           <p>Un óptico-optometrista titulado y colegiado. Si detectamos algo que requiera atención médica, te derivamos al oftalmólogo.</p>
         </details>
         <details>
+          <summary>¿Medís la tensión ocular y hacéis fotografía del fondo de ojo?</summary>
+          <p>Sí. La revisión incluye <a href="#tonometria">tonometría</a>, la medida de la presión intraocular, y <a href="#retinografia">retinografía</a>, una fotografía digital del fondo de ojo que permite valorar la retina y el nervio óptico y seguir su evolución revisión tras revisión.</p>
+        </details>
+        <details>
           <summary>¿Dónde está la óptica Senti2 en Moraira?</summary>
           <p>En la C/ Marjaleta, 3, 03724 Moraira (Alicante), en el centro del pueblo. <a href="https://www.google.com/maps/search/?api=1&query=Optica+Senti2+Moraira" target="_blank" rel="noopener">Ver cómo llegar</a>.</p>
         </details>
@@ -961,7 +979,7 @@
           <img src="img/logo/senti2-logo.svg" alt="" width="60" height="30" loading="lazy">
           <span class="logo__texto">Senti2 <em>Óptica</em></span>
         </a>
-        <p>Establecimiento sanitario de óptica en Moraira: revisión de la vista, lentes de contacto y gafas graduadas y de sol de primeras marcas.</p>
+        <p>Establecimiento sanitario de óptica en Moraira: revisión de la vista con tonometría y retinografía, lentes de contacto y gafas graduadas y de sol de primeras marcas.</p>
         <!-- Las mismas redes que aparecen en vuestra ficha de Google -->
         <ul class="redes">
           <li><a href="https://www.instagram.com/senti2moraira/" target="_blank" rel="noopener" aria-label="Instagram de Senti2 Óptica"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a></li>
