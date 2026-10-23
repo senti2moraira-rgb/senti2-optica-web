@@ -268,7 +268,7 @@ document.querySelectorAll('.mega__marca').forEach(function (enlace) {
 // ---------- 7. APARICIÓN SUAVE AL HACER SCROLL ----------
 // Elegimos qué elementos aparecen poco a poco
 const elementosAnimados = document.querySelectorAll(
-  '.seccion__cabecera, .salud__intro > *, .edad, .senales, .profesional, .producto, .tendencia, .servicio, .conoce__foto, .conoce__texto, .tienda__foto, .opinion, .cita__opciones li, .newsletter__caja'
+  '.seccion__cabecera, .salud__intro > *, .edad, .senales, .problema, .habitos > *, .profesional, .producto, .tendencia, .servicio, .conoce__foto, .conoce__texto, .tienda__foto, .opinion, .cita__opciones li, .newsletter__caja'
 );
 
 if ('IntersectionObserver' in window && !menosMovimiento) {

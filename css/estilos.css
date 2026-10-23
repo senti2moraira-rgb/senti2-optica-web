@@ -705,6 +705,106 @@ h2 em {
   background-color: var(--blanco);
 }
 
+/* Subtítulo que abre un bloque nuevo dentro de la sección */
+.salud__subtitulo--separado {
+  margin-top: var(--espacio-xl);
+}
+
+/* Tarjetas de problemas de visión (miopía, presbicia…) */
+.problemas {
+  display: grid;
+  gap: var(--espacio-m);
+  margin-bottom: var(--espacio-xl);
+}
+.problema {
+  display: flex;
+  flex-direction: column;
+  padding: var(--espacio-m);
+  background-color: var(--blanco);
+  border: 1px solid rgba(18, 117, 111, 0.12);
+  border-radius: var(--radio);
+}
+.problema h4 {
+  font-family: var(--letra-titulos);
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: var(--espacio-xs);
+}
+.problema p {
+  font-size: 15px;
+  color: var(--gris);
+}
+/* La última línea ("Cómo lo resolvemos") queda abajo, separada por una raya */
+.problema__solucion {
+  margin-top: auto;
+  padding-top: var(--espacio-s);
+  border-top: 1px solid var(--marfil-oscuro);
+}
+.problema__solucion strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--turquesa);
+  margin-bottom: 4px;
+}
+
+/* Consejos (tarjeta blanca) y urgencias (tarjeta con acento rojo), lado a lado */
+.habitos {
+  display: grid;
+  gap: var(--espacio-m);
+  align-items: start;
+}
+.habitos .lista-check li {
+  font-size: 15px;
+}
+.urgencias {
+  padding: var(--espacio-l) var(--espacio-m);
+  background-color: var(--blanco);
+  border-radius: var(--radio);
+  border-top: 3px solid #e0645c;
+  box-shadow: var(--sombra);
+}
+.urgencias h3 {
+  font-size: 26px;
+  margin-bottom: var(--espacio-s);
+}
+.urgencias li {
+  position: relative;
+  padding: 10px 0 10px 30px;
+  font-size: 15px;
+  border-bottom: 1px solid var(--marfil-oscuro);
+}
+.urgencias li::before {
+  content: "!";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #e0645c;
+  color: var(--blanco);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+}
+.urgencias p {
+  margin-top: var(--espacio-s);
+  font-size: 14px;
+  color: var(--gris);
+}
+
+/* Aviso final, pequeño y centrado */
+.salud__nota {
+  margin-top: var(--espacio-l);
+  text-align: center;
+  font-size: 13px;
+  color: var(--gris);
+}
+
 
 /* =====================================================================
    7c. EQUIPO (profesionales sanitarios)
@@ -1652,6 +1752,12 @@ h2 em {
   .edades {
     grid-template-columns: repeat(2, 1fr);
   }
+  .problemas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .habitos {
+    grid-template-columns: 1fr 1fr;
+  }
 
   .opiniones__lista {
     grid-template-columns: repeat(3, 1fr);
@@ -1826,6 +1932,13 @@ h2 em {
   }
   .edades {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .problemas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .habitos {
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--espacio-l);
   }
 
   /* Conoce: rejilla de 12 columnas → foto 5, texto 6 (con 1 de aire) */
