@@ -969,6 +969,52 @@
           </li>
         </ul>
         <p class="cita__nota">También puedes pasarte por la tienda sin cita: C/ Marjaleta, 3, Moraira · <span class="estado-tienda">Consultando horario…</span></p>
+
+        <!-- Formulario de contacto. Llega por correo a senti2moraira@gmail.com a través de
+             FormSubmit (el mismo servicio que la newsletter). El envío sin recargar lo hace js/main.js. -->
+        <div class="contacto">
+          <h3 class="contacto__titulo">O escríbenos desde aquí</h3>
+          <p class="contacto__intro">Cuéntanos qué necesitas y te respondemos lo antes posible.</p>
+          <form class="contacto__formulario formulario-ajax" data-textos="contacto" action="https://formsubmit.co/c657af33cdbf25f8cca13b135b47ef7a" method="post">
+            <input type="hidden" name="_subject" value="Nuevo mensaje desde la web de Senti2">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_autoresponse" value="Hemos recibido tu mensaje. Te responderemos lo antes posible en horario de tienda. Si es urgente, llámanos al 966 49 04 40.">
+            <input type="hidden" name="_next" value="https://www.senti2moraira.com/#cita">
+            <input type="hidden" name="idioma" value="es">
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="solo-lectores">
+            <div class="campo">
+              <label for="contacto-nombre">Nombre</label>
+              <input type="text" id="contacto-nombre" name="nombre" required autocomplete="name">
+            </div>
+            <div class="campo">
+              <label for="contacto-telefono">Teléfono (opcional)</label>
+              <input type="tel" id="contacto-telefono" name="telefono" autocomplete="tel">
+            </div>
+            <div class="campo">
+              <label for="contacto-email">Correo electrónico</label>
+              <input type="email" id="contacto-email" name="email" required autocomplete="email">
+            </div>
+            <div class="campo">
+              <label for="contacto-motivo">Motivo</label>
+              <select id="contacto-motivo" name="motivo">
+                <option value="Revisión de la vista">Revisión de la vista</option>
+                <option value="Gafas graduadas o de sol">Gafas graduadas o de sol</option>
+                <option value="Lentes de contacto">Lentes de contacto</option>
+                <option value="Otra consulta">Otra consulta</option>
+              </select>
+            </div>
+            <div class="campo campo--ancho">
+              <label for="contacto-mensaje">Mensaje</label>
+              <textarea id="contacto-mensaje" name="mensaje" rows="4" required></textarea>
+            </div>
+            <label class="casilla">
+              <input type="checkbox" name="privacidad" required>
+              <span>He leído y acepto la <a href="privacidad.html">política de privacidad</a>.</span>
+            </label>
+            <button type="submit" class="boton boton--principal">Enviar mensaje</button>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -979,7 +1025,7 @@
     <section class="seccion newsletter" aria-labelledby="newsletter-titulo">
       <div class="contenedor newsletter__caja">
         <h2 id="newsletter-titulo">Suscríbete y recibe novedades y consejos de salud visual</h2>
-        <form class="newsletter__formulario" action="https://formsubmit.co/c657af33cdbf25f8cca13b135b47ef7a" method="post">
+        <form class="newsletter__formulario formulario-ajax" data-textos="newsletter" action="https://formsubmit.co/c657af33cdbf25f8cca13b135b47ef7a" method="post">
           <!-- Campos ocultos para FormSubmit (el servicio que reenvía la suscripción a senti2moraira@gmail.com) -->
           <input type="hidden" name="_subject" value="Nueva suscripción a la newsletter de Senti2">
           <input type="hidden" name="_template" value="table">

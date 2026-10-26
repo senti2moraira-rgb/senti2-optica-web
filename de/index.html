@@ -1058,6 +1058,52 @@
           </li>
         </ul>
         <p class="cita__nota">Sie können auch ohne Termin vorbeikommen: Calle Marjaleta 3, Moraira · <span class="estado-tienda">Öffnungszeiten werden geprüft…</span></p>
+
+        <!-- Formulario de contacto. Llega por correo a senti2moraira@gmail.com a través de
+             FormSubmit (el mismo servicio que la newsletter). El envío sin recargar lo hace js/main.js. -->
+        <div class="contacto">
+          <h3 class="contacto__titulo">Oder schreiben Sie uns hier</h3>
+          <p class="contacto__intro">Sagen Sie uns, was Sie brauchen, und wir melden uns so schnell wie möglich.</p>
+          <form class="contacto__formulario formulario-ajax" data-textos="contacto" action="https://formsubmit.co/c657af33cdbf25f8cca13b135b47ef7a" method="post">
+            <input type="hidden" name="_subject" value="Neue Nachricht von der Website (Deutsch) · Senti2">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_autoresponse" value="Wir haben Ihre Nachricht erhalten und antworten so schnell wie möglich während der Öffnungszeiten. In dringenden Fällen rufen Sie uns an: +34 966 49 04 40.">
+            <input type="hidden" name="_next" value="https://www.senti2moraira.com/de/#cita">
+            <input type="hidden" name="idioma" value="de">
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="solo-lectores">
+            <div class="campo">
+              <label for="contacto-nombre">Name</label>
+              <input type="text" id="contacto-nombre" name="nombre" required autocomplete="name">
+            </div>
+            <div class="campo">
+              <label for="contacto-telefono">Telefon (optional)</label>
+              <input type="tel" id="contacto-telefono" name="telefono" autocomplete="tel">
+            </div>
+            <div class="campo">
+              <label for="contacto-email">E-Mail</label>
+              <input type="email" id="contacto-email" name="email" required autocomplete="email">
+            </div>
+            <div class="campo">
+              <label for="contacto-motivo">Anliegen</label>
+              <select id="contacto-motivo" name="motivo">
+                <option value="Sehtest">Sehtest</option>
+                <option value="Brille oder Sonnenbrille">Brille oder Sonnenbrille</option>
+                <option value="Kontaktlinsen">Kontaktlinsen</option>
+                <option value="Andere Frage">Andere Frage</option>
+              </select>
+            </div>
+            <div class="campo campo--ancho">
+              <label for="contacto-mensaje">Nachricht</label>
+              <textarea id="contacto-mensaje" name="mensaje" rows="4" required></textarea>
+            </div>
+            <label class="casilla">
+              <input type="checkbox" name="privacidad" required>
+              <span>Ich habe die <a href="../privacidad.html">Datenschutzerklärung (auf Spanisch) gelesen und akzeptiere sie</a>.</span>
+            </label>
+            <button type="submit" class="boton boton--principal">Nachricht senden</button>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -1068,7 +1114,7 @@
     <section class="seccion newsletter" aria-labelledby="newsletter-titulo">
       <div class="contenedor newsletter__caja">
         <h2 id="newsletter-titulo">Newsletter: Neuheiten und Tipps für gesunde Augen</h2>
-        <form class="newsletter__formulario" action="https://formsubmit.co/c657af33cdbf25f8cca13b135b47ef7a" method="post">
+        <form class="newsletter__formulario formulario-ajax" data-textos="newsletter" action="https://formsubmit.co/c657af33cdbf25f8cca13b135b47ef7a" method="post">
           <!-- Campos ocultos para FormSubmit (el servicio que reenvía la suscripción a senti2moraira@gmail.com) -->
           <input type="hidden" name="_subject" value="Neue Newsletter-Anmeldung (Deutsch) · Senti2">
           <input type="hidden" name="_template" value="table">

@@ -12,7 +12,7 @@
 //  7. Aparición suave al hacer scroll
 //  8. Indicador "Abierto ahora / Cerrado"
 //  9. Banner de cookies (RGPD)
-// 10. Newsletter
+// 10. Formularios (newsletter y contacto)
 // 11. Año del pie de página
 // =====================================================================
 
@@ -38,7 +38,10 @@ const TEXTOS = {
     dias: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
     newsletterEnviando: 'Enviando…',
     newsletterOk: '¡Gracias! Te hemos apuntado. Revisa tu correo: te llegará una confirmación.',
-    newsletterError: 'No se ha podido enviar. Inténtalo de nuevo o escríbenos a senti2moraira@gmail.com.'
+    newsletterError: 'No se ha podido enviar. Inténtalo de nuevo o escríbenos a senti2moraira@gmail.com.',
+    contactoEnviando: 'Enviando…',
+    contactoOk: '¡Mensaje enviado! Te responderemos lo antes posible en horario de tienda.',
+    contactoError: 'No se ha podido enviar. Inténtalo de nuevo, llámanos al 966 49 04 40 o escríbenos a senti2moraira@gmail.com.'
   },
   en: {
     abrirMenu: 'Open menu', cerrarMenu: 'Close menu',
@@ -50,7 +53,10 @@ const TEXTOS = {
     dias: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     newsletterEnviando: 'Sending…',
     newsletterOk: 'Thank you! You are on the list. Check your inbox for a confirmation email.',
-    newsletterError: 'It could not be sent. Please try again or email us at senti2moraira@gmail.com.'
+    newsletterError: 'It could not be sent. Please try again or email us at senti2moraira@gmail.com.',
+    contactoEnviando: 'Sending…',
+    contactoOk: 'Message sent! We will get back to you as soon as possible during opening hours.',
+    contactoError: 'It could not be sent. Please try again, call us on 966 49 04 40 or email senti2moraira@gmail.com.'
   },
   de: {
     abrirMenu: 'Menü öffnen', cerrarMenu: 'Menü schließen',
@@ -62,7 +68,10 @@ const TEXTOS = {
     dias: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
     newsletterEnviando: 'Wird gesendet…',
     newsletterOk: 'Vielen Dank! Sie sind angemeldet. Eine Bestätigung kommt per E-Mail.',
-    newsletterError: 'Senden nicht möglich. Bitte erneut versuchen oder an senti2moraira@gmail.com schreiben.'
+    newsletterError: 'Senden nicht möglich. Bitte erneut versuchen oder an senti2moraira@gmail.com schreiben.',
+    contactoEnviando: 'Wird gesendet…',
+    contactoOk: 'Nachricht gesendet! Wir melden uns so schnell wie möglich während der Öffnungszeiten.',
+    contactoError: 'Senden nicht möglich. Bitte erneut versuchen, uns unter 966 49 04 40 anrufen oder an senti2moraira@gmail.com schreiben.'
   },
   fr: {
     abrirMenu: 'Ouvrir le menu', cerrarMenu: 'Fermer le menu',
@@ -74,7 +83,10 @@ const TEXTOS = {
     dias: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
     newsletterEnviando: 'Envoi en cours…',
     newsletterOk: 'Merci ! Vous êtes inscrit. Une confirmation vous attend dans votre boîte mail.',
-    newsletterError: 'L’envoi a échoué. Réessayez ou écrivez-nous à senti2moraira@gmail.com.'
+    newsletterError: 'L’envoi a échoué. Réessayez ou écrivez-nous à senti2moraira@gmail.com.',
+    contactoEnviando: 'Envoi en cours…',
+    contactoOk: 'Message envoyé ! Nous vous répondrons dès que possible pendant les heures d’ouverture.',
+    contactoError: 'L’envoi a échoué. Réessayez, appelez-nous au 966 49 04 40 ou écrivez à senti2moraira@gmail.com.'
   },
   nl: {
     abrirMenu: 'Menu openen', cerrarMenu: 'Menu sluiten',
@@ -86,7 +98,10 @@ const TEXTOS = {
     dias: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
     newsletterEnviando: 'Verzenden…',
     newsletterOk: 'Bedankt! U staat op de lijst. Controleer uw e-mail voor een bevestiging.',
-    newsletterError: 'Verzenden is mislukt. Probeer het opnieuw of mail ons op senti2moraira@gmail.com.'
+    newsletterError: 'Verzenden is mislukt. Probeer het opnieuw of mail ons op senti2moraira@gmail.com.',
+    contactoEnviando: 'Verzenden…',
+    contactoOk: 'Bericht verzonden! We nemen zo snel mogelijk contact met u op tijdens openingstijden.',
+    contactoError: 'Verzenden is mislukt. Probeer het opnieuw, bel 966 49 04 40 of mail naar senti2moraira@gmail.com.'
   }
 };
 const IDIOMA = (document.documentElement.lang || 'es').slice(0, 2);
@@ -480,26 +495,29 @@ if (banner && !leerEleccion()) {
 }
 
 
-// ---------- 10. NEWSLETTER ----------
-// El formulario envía la suscripción a FormSubmit (formsubmit.co), que la
+// ---------- 10. FORMULARIOS (NEWSLETTER Y CONTACTO) ----------
+// Los dos formularios envían los datos a FormSubmit (formsubmit.co), que los
 // reenvía por correo a senti2moraira@gmail.com. Aquí lo hacemos sin recargar
 // la página y mostramos un mensaje de confirmación en el idioma de la web.
-// Si el JavaScript fallara, el formulario funciona igual (recarga la página).
-const formulario = document.querySelector('.newsletter__formulario');
+// Cada formulario lleva data-textos="newsletter" o "contacto" para elegir
+// sus mensajes en TEXTOS. Si el JavaScript fallara, el formulario funciona
+// igual (recarga la página y FormSubmit vuelve a la dirección de "_next").
+document.querySelectorAll('.formulario-ajax').forEach(function (formulario) {
+  if (!window.fetch) return;
+  const claves = formulario.dataset.textos || 'newsletter';
 
-if (formulario && window.fetch) {
   formulario.addEventListener('submit', function (evento) {
     evento.preventDefault();
-    let aviso = formulario.querySelector('.newsletter__aviso');
+    let aviso = formulario.querySelector('.formulario__aviso');
     if (!aviso) {
       aviso = document.createElement('p');
-      aviso.className = 'newsletter__aviso';
+      aviso.className = 'formulario__aviso';
       aviso.setAttribute('role', 'status');
       formulario.appendChild(aviso);
     }
     const boton = formulario.querySelector('button[type="submit"]');
     boton.disabled = true;
-    aviso.textContent = T.newsletterEnviando;
+    aviso.textContent = T[claves + 'Enviando'];
 
     fetch('https://formsubmit.co/ajax/c657af33cdbf25f8cca13b135b47ef7a', {
       method: 'POST',
@@ -509,16 +527,16 @@ if (formulario && window.fetch) {
       .then(function (respuesta) { return respuesta.json(); })
       .then(function (datos) {
         if (datos && (datos.success === 'true' || datos.success === true)) {
-          aviso.textContent = T.newsletterOk;
+          aviso.textContent = T[claves + 'Ok'];
           formulario.reset();
         } else {
-          aviso.textContent = T.newsletterError;
+          aviso.textContent = T[claves + 'Error'];
         }
       })
-      .catch(function () { aviso.textContent = T.newsletterError; })
+      .catch(function () { aviso.textContent = T[claves + 'Error']; })
       .finally(function () { boton.disabled = false; });
   });
-}
+});
 
 
 // ---------- 11. AÑO DEL PIE DE PÁGINA ----------

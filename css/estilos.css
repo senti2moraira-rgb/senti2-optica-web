@@ -1366,6 +1366,64 @@ h2 em {
   color: var(--carbon);
 }
 
+/* Formulario de contacto (dentro de "Pide tu cita") */
+.contacto {
+  max-width: 760px;
+  margin: var(--espacio-l) auto 0;
+  padding: var(--espacio-l) var(--espacio-m);
+  background-color: var(--blanco);
+  border-radius: var(--radio);
+  text-align: center;
+}
+.contacto__titulo {
+  font-size: 30px;
+  margin-bottom: 4px;
+}
+.contacto__intro {
+  color: var(--gris);
+  margin-bottom: var(--espacio-m);
+}
+.contacto__formulario {
+  display: grid;
+  gap: 14px;
+  text-align: left;
+}
+.campo {
+  display: grid;
+  gap: 6px;
+}
+.campo label {
+  font-size: 13px;
+  font-weight: 600;
+}
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--marfil-oscuro);
+  border-radius: var(--radio);
+  background-color: var(--blanco);
+  font: inherit;
+  color: var(--carbon);
+}
+.campo textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--turquesa);
+}
+.contacto__formulario .casilla {
+  justify-content: flex-start;
+}
+.contacto__formulario .boton {
+  justify-self: center;
+}
+
 
 /* =====================================================================
    14b. PREGUNTAS FRECUENTES
@@ -1454,6 +1512,7 @@ h2 em {
   text-decoration: underline;
 }
 .newsletter__aviso,
+.formulario__aviso,
 .aviso-busqueda {
   grid-column: 1 / -1;
   font-size: 14px;
@@ -1823,6 +1882,17 @@ h2 em {
   }
   .cita__opciones {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .contacto {
+    padding: var(--espacio-l);
+  }
+  .contacto__formulario {
+    grid-template-columns: 1fr 1fr;
+  }
+  .campo--ancho,
+  .contacto__formulario .boton,
+  .formulario__aviso {
+    grid-column: 1 / -1;
   }
 
   .newsletter__formulario {

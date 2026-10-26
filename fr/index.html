@@ -1058,6 +1058,52 @@
           </li>
         </ul>
         <p class="cita__nota">Vous pouvez aussi passer sans rendez-vous : Calle Marjaleta, 3, Moraira · <span class="estado-tienda">Vérification des horaires…</span></p>
+
+        <!-- Formulario de contacto. Llega por correo a senti2moraira@gmail.com a través de
+             FormSubmit (el mismo servicio que la newsletter). El envío sin recargar lo hace js/main.js. -->
+        <div class="contacto">
+          <h3 class="contacto__titulo">Ou écrivez-nous ici</h3>
+          <p class="contacto__intro">Dites-nous ce dont vous avez besoin et nous vous répondrons dès que possible.</p>
+          <form class="contacto__formulario formulario-ajax" data-textos="contacto" action="https://formsubmit.co/c657af33cdbf25f8cca13b135b47ef7a" method="post">
+            <input type="hidden" name="_subject" value="Nouveau message depuis le site (français) · Senti2">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_autoresponse" value="Nous avons bien reçu votre message. Nous vous répondrons dès que possible pendant les heures d’ouverture. En cas d’urgence, appelez-nous au +34 966 49 04 40.">
+            <input type="hidden" name="_next" value="https://www.senti2moraira.com/fr/#cita">
+            <input type="hidden" name="idioma" value="fr">
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="solo-lectores">
+            <div class="campo">
+              <label for="contacto-nombre">Nom</label>
+              <input type="text" id="contacto-nombre" name="nombre" required autocomplete="name">
+            </div>
+            <div class="campo">
+              <label for="contacto-telefono">Téléphone (facultatif)</label>
+              <input type="tel" id="contacto-telefono" name="telefono" autocomplete="tel">
+            </div>
+            <div class="campo">
+              <label for="contacto-email">E-mail</label>
+              <input type="email" id="contacto-email" name="email" required autocomplete="email">
+            </div>
+            <div class="campo">
+              <label for="contacto-motivo">Motif</label>
+              <select id="contacto-motivo" name="motivo">
+                <option value="Examen de la vue">Examen de la vue</option>
+                <option value="Lunettes de vue ou solaires">Lunettes de vue ou solaires</option>
+                <option value="Lentilles de contact">Lentilles de contact</option>
+                <option value="Autre demande">Autre demande</option>
+              </select>
+            </div>
+            <div class="campo campo--ancho">
+              <label for="contacto-mensaje">Message</label>
+              <textarea id="contacto-mensaje" name="mensaje" rows="4" required></textarea>
+            </div>
+            <label class="casilla">
+              <input type="checkbox" name="privacidad" required>
+              <span>J’ai lu et j’accepte la <a href="../privacidad.html">politique de confidentialité (en espagnol)</a>.</span>
+            </label>
+            <button type="submit" class="boton boton--principal">Envoyer le message</button>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -1068,7 +1114,7 @@
     <section class="seccion newsletter" aria-labelledby="newsletter-titulo">
       <div class="contenedor newsletter__caja">
         <h2 id="newsletter-titulo">Abonnez-vous pour recevoir nos nouveautés et nos conseils de santé visuelle</h2>
-        <form class="newsletter__formulario" action="https://formsubmit.co/c657af33cdbf25f8cca13b135b47ef7a" method="post">
+        <form class="newsletter__formulario formulario-ajax" data-textos="newsletter" action="https://formsubmit.co/c657af33cdbf25f8cca13b135b47ef7a" method="post">
           <!-- Campos ocultos para FormSubmit (el servicio que reenvía la suscripción a senti2moraira@gmail.com) -->
           <input type="hidden" name="_subject" value="Nouvel abonnement à la newsletter (français) · Senti2">
           <input type="hidden" name="_template" value="table">
