@@ -1065,7 +1065,15 @@
     <section class="seccion newsletter" aria-labelledby="newsletter-titulo">
       <div class="contenedor newsletter__caja">
         <h2 id="newsletter-titulo">Subscribe for new arrivals and eye health tips</h2>
-        <form class="newsletter__formulario" action="#" method="post">
+        <form class="newsletter__formulario" action="https://formsubmit.co/c657af33cdbf25f8cca13b135b47ef7a" method="post">
+          <!-- Campos ocultos para FormSubmit (el servicio que reenvía la suscripción a senti2moraira@gmail.com) -->
+          <input type="hidden" name="_subject" value="New newsletter subscription (English) · Senti2">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_autoresponse" value="Thank you for subscribing to Senti2 Óptica news. We will write to you now and then with new arrivals and eye health tips. If you ever want to unsubscribe, just reply to any of our emails and we will take care of it.">
+          <input type="hidden" name="_next" value="https://www.senti2moraira.com/en/">
+          <input type="hidden" name="idioma" value="en">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="solo-lectores">
           <label for="email-newsletter" class="solo-lectores">Your email address</label>
           <input type="email" id="email-newsletter" name="email" placeholder="Your email address" required autocomplete="email">
           <button type="submit" class="boton boton--principal">Subscribe</button>

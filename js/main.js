@@ -36,7 +36,9 @@ const TEXTOS = {
     abreHoy: 'abre hoy a las {h}', abreManana: 'abre mañana a las {h}',
     abreDia: 'abre el {d} a las {h}', abreDiaFecha: 'abre el {d} {n} a las {h}',
     dias: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
-    newsletter: 'Formulario en pruebas: todavía no está conectado a un servicio de correo.'
+    newsletterEnviando: 'Enviando…',
+    newsletterOk: '¡Gracias! Te hemos apuntado. Revisa tu correo: te llegará una confirmación.',
+    newsletterError: 'No se ha podido enviar. Inténtalo de nuevo o escríbenos a senti2moraira@gmail.com.'
   },
   en: {
     abrirMenu: 'Open menu', cerrarMenu: 'Close menu',
@@ -46,7 +48,9 @@ const TEXTOS = {
     abreHoy: 'opens today at {h}', abreManana: 'opens tomorrow at {h}',
     abreDia: 'opens on {d} at {h}', abreDiaFecha: 'opens on {d} {n} at {h}',
     dias: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    newsletter: 'Test form: it is not connected to a mailing service yet.'
+    newsletterEnviando: 'Sending…',
+    newsletterOk: 'Thank you! You are on the list. Check your inbox for a confirmation email.',
+    newsletterError: 'It could not be sent. Please try again or email us at senti2moraira@gmail.com.'
   },
   de: {
     abrirMenu: 'Menü öffnen', cerrarMenu: 'Menü schließen',
@@ -56,7 +60,9 @@ const TEXTOS = {
     abreHoy: 'öffnet heute um {h} Uhr', abreManana: 'öffnet morgen um {h} Uhr',
     abreDia: 'öffnet am {d} um {h} Uhr', abreDiaFecha: 'öffnet am {d}, dem {n}., um {h} Uhr',
     dias: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-    newsletter: 'Testformular: noch nicht mit einem E-Mail-Dienst verbunden.'
+    newsletterEnviando: 'Wird gesendet…',
+    newsletterOk: 'Vielen Dank! Sie sind angemeldet. Eine Bestätigung kommt per E-Mail.',
+    newsletterError: 'Senden nicht möglich. Bitte erneut versuchen oder an senti2moraira@gmail.com schreiben.'
   },
   fr: {
     abrirMenu: 'Ouvrir le menu', cerrarMenu: 'Fermer le menu',
@@ -66,7 +72,9 @@ const TEXTOS = {
     abreHoy: 'ouvre aujourd’hui à {h}', abreManana: 'ouvre demain à {h}',
     abreDia: 'ouvre {d} à {h}', abreDiaFecha: 'ouvre {d} {n} à {h}',
     dias: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
-    newsletter: 'Formulaire en test : pas encore relié à un service d’e-mailing.'
+    newsletterEnviando: 'Envoi en cours…',
+    newsletterOk: 'Merci ! Vous êtes inscrit. Une confirmation vous attend dans votre boîte mail.',
+    newsletterError: 'L’envoi a échoué. Réessayez ou écrivez-nous à senti2moraira@gmail.com.'
   }
 };
 const IDIOMA = (document.documentElement.lang || 'es').slice(0, 2);
@@ -461,11 +469,13 @@ if (banner && !leerEleccion()) {
 
 
 // ---------- 10. NEWSLETTER ----------
-// PENDIENTE: conectar con un servicio de correo (Brevo, Mailchimp…).
-// Mientras tanto, avisamos de que el formulario está en pruebas.
+// El formulario envía la suscripción a FormSubmit (formsubmit.co), que la
+// reenvía por correo a senti2moraira@gmail.com. Aquí lo hacemos sin recargar
+// la página y mostramos un mensaje de confirmación en el idioma de la web.
+// Si el JavaScript fallara, el formulario funciona igual (recarga la página).
 const formulario = document.querySelector('.newsletter__formulario');
 
-if (formulario) {
+if (formulario && window.fetch) {
   formulario.addEventListener('submit', function (evento) {
     evento.preventDefault();
     let aviso = formulario.querySelector('.newsletter__aviso');
@@ -475,7 +485,26 @@ if (formulario) {
       aviso.setAttribute('role', 'status');
       formulario.appendChild(aviso);
     }
-    aviso.textContent = T.newsletter;
+    const boton = formulario.querySelector('button[type="submit"]');
+    boton.disabled = true;
+    aviso.textContent = T.newsletterEnviando;
+
+    fetch('https://formsubmit.co/ajax/c657af33cdbf25f8cca13b135b47ef7a', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(formulario)))
+    })
+      .then(function (respuesta) { return respuesta.json(); })
+      .then(function (datos) {
+        if (datos && (datos.success === 'true' || datos.success === true)) {
+          aviso.textContent = T.newsletterOk;
+          formulario.reset();
+        } else {
+          aviso.textContent = T.newsletterError;
+        }
+      })
+      .catch(function () { aviso.textContent = T.newsletterError; })
+      .finally(function () { boton.disabled = false; });
   });
 }
 
