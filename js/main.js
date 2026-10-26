@@ -75,6 +75,18 @@ const TEXTOS = {
     newsletterEnviando: 'Envoi en cours…',
     newsletterOk: 'Merci ! Vous êtes inscrit. Une confirmation vous attend dans votre boîte mail.',
     newsletterError: 'L’envoi a échoué. Réessayez ou écrivez-nous à senti2moraira@gmail.com.'
+  },
+  nl: {
+    abrirMenu: 'Menu openen', cerrarMenu: 'Menu sluiten',
+    resultados: 'Resultaten voor “{q}”: {n}',
+    sinResultados: '“{q}” staat momenteel niet bij de nieuwe modellen op de website, maar wel in de winkel. Vraag het ons!',
+    abierto: 'Nu open · tot {h} uur', cerrado: 'Nu gesloten · {p}',
+    abreHoy: 'opent vandaag om {h} uur', abreManana: 'opent morgen om {h} uur',
+    abreDia: 'opent {d} om {h} uur', abreDiaFecha: 'opent {d} {n} om {h} uur',
+    dias: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
+    newsletterEnviando: 'Verzenden…',
+    newsletterOk: 'Bedankt! U staat op de lijst. Controleer uw e-mail voor een bevestiging.',
+    newsletterError: 'Verzenden is mislukt. Probeer het opnieuw of mail ons op senti2moraira@gmail.com.'
   }
 };
 const IDIOMA = (document.documentElement.lang || 'es').slice(0, 2);
