@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página no encontrada · Senti2 Óptica, Moraira</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/img/logo/senti2-logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/estilos.css">
+  <style>
+    /* Página de error: centrada y sencilla. Vercel la muestra sola cuando una dirección no existe. */
+    .error { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 24px; background-color: var(--marfil); }
+    .error img { width: 120px; height: auto; margin: 0 auto 24px; }
+    .error h1 { font-size: clamp(32px, 6vw, 56px); margin-bottom: 12px; }
+    .error p { color: var(--gris); max-width: 520px; margin: 0 auto 24px; }
+    .error .botones { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .error .idiomas-error { margin-top: 32px; font-size: 14px; color: var(--gris); }
+    .error .idiomas-error a { margin: 0 6px; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main class="error">
+    <div>
+      <img src="/img/logo/senti2-logo.svg" alt="Senti2 Óptica">
+      <h1>Esta página no existe</h1>
+      <p>Puede que el enlace esté mal escrito o que hayamos movido la página. Te llevamos a la portada o a pedir tu cita.</p>
+      <div class="botones">
+        <a class="boton boton--principal" href="/">Ir a la portada</a>
+        <a class="boton boton--borde" href="/#cita">Pedir cita</a>
+      </div>
+      <p class="idiomas-error">
+        <a href="/en/" lang="en">Page not found · Home in English</a>
+        <a href="/de/" lang="de">Seite nicht gefunden · Startseite auf Deutsch</a>
+        <a href="/fr/" lang="fr">Page introuvable · Accueil en français</a>
+        <a href="/nl/" lang="nl">Pagina niet gevonden · Startpagina in het Nederlands</a>
+      </p>
+    </div>
+  </main>
+</body>
+</html>
