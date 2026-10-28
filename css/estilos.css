@@ -2311,3 +2311,80 @@ h2 em {
     gap: 0 var(--espacio-l);
   }
 }
+
+
+/* =====================================================================
+   22. PÁGINA DE SERVICIO (revision-de-la-vista.html y sus idiomas)
+   ===================================================================== */
+.servicio-pagina__portada .botones {
+  justify-content: center;
+  margin-bottom: var(--espacio-m);
+}
+.servicio-pagina__horario {
+  font-size: 14px;
+  color: var(--gris);
+}
+.servicio-pagina__botones {
+  justify-content: center;
+  margin-bottom: var(--espacio-m);
+}
+/* Sin menú móvil, el selector de idioma se muestra siempre (compacto en móvil) */
+.servicio-pagina .cabecera .idiomas {
+  display: flex;
+}
+@media (max-width: 767px) {
+  .servicio-pagina .cabecera .idiomas {
+    padding: 2px 2px 2px 6px;
+    gap: 0;
+  }
+  .servicio-pagina .cabecera .idiomas a {
+    padding: 4px 5px;
+    font-size: 11px;
+  }
+  .servicio-pagina .cabecera .idiomas__icono {
+    display: none;
+  }
+  .servicio-pagina .cabecera .botones {
+    gap: 6px;
+    flex-wrap: nowrap;
+  }
+  /* En móvil solo cabe el símbolo del logo junto a los idiomas y el botón */
+  .servicio-pagina .cabecera .logo__texto {
+    display: none;
+  }
+}
+/* Los tres pasos: número en un círculo y texto debajo */
+.pasos {
+  list-style: none;
+  display: grid;
+  gap: var(--espacio-m);
+  counter-reset: paso;
+}
+.pasos li {
+  text-align: center;
+  padding: var(--espacio-m);
+}
+.pasos__numero {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--espacio-s);
+  border-radius: 50%;
+  background-color: var(--turquesa);
+  color: var(--blanco);
+  font-family: var(--letra-titulos);
+  font-size: 26px;
+}
+.pasos h3 {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+.pasos p {
+  color: var(--gris);
+}
+@media (min-width: 768px) {
+  .pasos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
