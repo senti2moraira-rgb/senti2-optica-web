@@ -2055,6 +2055,18 @@ h2 em {
     z-index: 1;
     color: var(--blanco);
   }
+  /* La foto destacada no se estira aunque las columnas sean largas */
+  .mega__destacado--foto {
+    align-self: start;
+  }
+  /* Menú de marcas: listas largas en dos columnas para que el panel no sea tan alto */
+  #mega-marcas .mega__columna ul {
+    columns: 2;
+    column-gap: var(--espacio-s);
+  }
+  #mega-marcas .mega__columna li {
+    break-inside: avoid;
+  }
 
   /* --- Secciones --- */
   .seccion {
