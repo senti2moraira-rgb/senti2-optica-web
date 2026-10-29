@@ -2388,3 +2388,8 @@ h2 em {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* Tarjetas con foto real (lentillas de fantasía): sin fundir el fondo */
+.producto--foto .producto__fotos img {
+  mix-blend-mode: normal;
+}
