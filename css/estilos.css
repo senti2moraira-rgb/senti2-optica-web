@@ -1649,6 +1649,37 @@ h2 em {
   border-radius: var(--radio);
   filter: grayscale(0.6);         /* mapa más sobrio, a juego con la web */
 }
+/* Aviso que sustituye al mapa hasta que se aceptan las cookies */
+.pie__mapa {
+  position: relative;
+}
+.mapa-aviso {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: var(--espacio-s);
+  text-align: center;
+  font-size: 13px;
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  border-radius: var(--radio);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.mapa-aviso p {
+  margin: 0;
+  opacity: 0.85;
+}
+.mapa-aviso a {
+  font-size: 12px;
+  text-decoration: underline;
+  opacity: 0.85;
+}
+.mapa-aviso[hidden] {
+  display: none;
+}
 
 .pie__legal {
   display: flex;

@@ -479,12 +479,22 @@ const CLAVE_COOKIES = 'senti2-cookies';
 function leerEleccion() {
   try { return localStorage.getItem(CLAVE_COOKIES); } catch (e) { return null; }
 }
+// El mapa de Google del pie solo se carga con consentimiento: hasta entonces
+// el <iframe> no tiene "src" (Google no recibe nada) y se ve un aviso con botón.
+const mapa = document.querySelector('.pie__mapa iframe[data-src]');
+const avisoMapa = document.getElementById('mapa-aviso');
+function cargarMapa() {
+  if (mapa && !mapa.getAttribute('src')) mapa.setAttribute('src', mapa.dataset.src);
+  if (avisoMapa) avisoMapa.hidden = true;
+}
+
 function guardarEleccion(valor) {
   try { localStorage.setItem(CLAVE_COOKIES, valor); } catch (e) { /* sin almacenamiento */ }
-  banner.hidden = true;
+  if (banner) banner.hidden = true;
   if (valor === 'aceptadas') {
-    // AQUÍ, y solo aquí, se cargarían las cookies de análisis
-    // (por ejemplo Google Analytics) cuando las uséis.
+    cargarMapa();
+    // AQUÍ, y solo aquí, se cargarían otras cookies de terceros
+    // (por ejemplo Google Analytics o Google Ads) cuando las uséis.
   }
 }
 
@@ -493,6 +503,9 @@ if (banner && !leerEleccion()) {
   document.getElementById('cookies-aceptar').addEventListener('click', function () { guardarEleccion('aceptadas'); });
   document.getElementById('cookies-rechazar').addEventListener('click', function () { guardarEleccion('rechazadas'); });
 }
+if (leerEleccion() === 'aceptadas') cargarMapa();
+const botonMapa = document.getElementById('mapa-cargar');
+if (botonMapa) botonMapa.addEventListener('click', function () { guardarEleccion('aceptadas'); });
 
 
 // ---------- 10. FORMULARIOS (NEWSLETTER Y CONTACTO) ----------

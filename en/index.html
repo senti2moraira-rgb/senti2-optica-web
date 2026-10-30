@@ -1335,7 +1335,13 @@
       </div>
 
       <div class="pie__columna pie__mapa">
-        <iframe src="https://www.google.com/maps?q=C%2F+Marjaleta+3,+03724+Moraira&output=embed" title="Map: Senti2 Óptica at Calle Marjaleta 3, Moraira" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <!-- El mapa solo se carga (y Google solo pone sus cookies) si la persona acepta: js/main.js pasa data-src a src -->
+        <iframe data-src="https://www.google.com/maps?q=C%2F+Marjaleta+3,+03724+Moraira&output=embed" title="Map: Senti2 Óptica at Calle Marjaleta 3, Moraira" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="mapa-aviso" id="mapa-aviso">
+          <p>The Google map loads only if you accept its cookies.</p>
+          <button type="button" class="boton boton--borde-claro boton--pequeno" id="mapa-cargar">Show the map</button>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Optica+Senti2+Moraira" target="_blank" rel="noopener">Open in Google Maps</a>
+        </div>
       </div>
     </div>
 
@@ -1363,7 +1369,7 @@
   <!-- BANNER DE COOKIES (RGPD) -->
   <div class="cookies" id="cookies" role="dialog" aria-labelledby="cookies-titulo" aria-describedby="cookies-texto" hidden>
     <h2 id="cookies-titulo">We use cookies</h2>
-    <p id="cookies-texto">We use essential technical cookies and, only if you accept, analytics cookies to improve the website. <a href="../cookies.html">More information (in Spanish)</a>.</p>
+    <p id="cookies-texto">We use essential technical cookies and, only if you accept, third-party cookies to show the Google Maps map. We use no analytics or advertising cookies. <a href="../cookies.html">More information (in Spanish)</a>.</p>
     <div class="botones">
       <button class="boton boton--borde" id="cookies-rechazar">Decline</button>
       <button class="boton boton--principal" id="cookies-aceptar">Accept</button>

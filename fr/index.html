@@ -1335,7 +1335,13 @@
       </div>
 
       <div class="pie__columna pie__mapa">
-        <iframe src="https://www.google.com/maps?q=C%2F+Marjaleta+3,+03724+Moraira&output=embed" title="Plan : Senti2 Óptica, Calle Marjaleta 3, Moraira" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <!-- El mapa solo se carga (y Google solo pone sus cookies) si la persona acepta: js/main.js pasa data-src a src -->
+        <iframe data-src="https://www.google.com/maps?q=C%2F+Marjaleta+3,+03724+Moraira&output=embed" title="Plan : Senti2 Óptica, Calle Marjaleta 3, Moraira" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="mapa-aviso" id="mapa-aviso">
+          <p>La carte Google Maps ne se charge que si vous acceptez ses cookies.</p>
+          <button type="button" class="boton boton--borde-claro boton--pequeno" id="mapa-cargar">Afficher la carte</button>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Optica+Senti2+Moraira" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+        </div>
       </div>
     </div>
 
@@ -1363,7 +1369,7 @@
   <!-- BANNER DE COOKIES (RGPD) -->
   <div class="cookies" id="cookies" role="dialog" aria-labelledby="cookies-titulo" aria-describedby="cookies-texto" hidden>
     <h2 id="cookies-titulo">Nous utilisons des cookies</h2>
-    <p id="cookies-texto">Nous utilisons des cookies techniques nécessaires et, uniquement si vous l’acceptez, des cookies d’analyse pour améliorer le site. <a href="../cookies.html">En savoir plus (en espagnol)</a>.</p>
+    <p id="cookies-texto">Nous utilisons des cookies techniques nécessaires et, uniquement si vous l’acceptez, des cookies tiers pour afficher la carte Google Maps. Aucun cookie d’analyse ni de publicité. <a href="../cookies.html">En savoir plus (en espagnol)</a>.</p>
     <div class="botones">
       <button class="boton boton--borde" id="cookies-rechazar">Refuser</button>
       <button class="boton boton--principal" id="cookies-aceptar">Accepter</button>

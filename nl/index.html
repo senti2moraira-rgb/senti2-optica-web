@@ -1335,7 +1335,13 @@
       </div>
 
       <div class="pie__columna pie__mapa">
-        <iframe src="https://www.google.com/maps?q=C%2F+Marjaleta+3,+03724+Moraira&output=embed" title="Kaart: Senti2 Óptica, Calle Marjaleta 3, Moraira" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <!-- El mapa solo se carga (y Google solo pone sus cookies) si la persona acepta: js/main.js pasa data-src a src -->
+        <iframe data-src="https://www.google.com/maps?q=C%2F+Marjaleta+3,+03724+Moraira&output=embed" title="Kaart: Senti2 Óptica, Calle Marjaleta 3, Moraira" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="mapa-aviso" id="mapa-aviso">
+          <p>De Google-kaart wordt alleen geladen als u de cookies accepteert.</p>
+          <button type="button" class="boton boton--borde-claro boton--pequeno" id="mapa-cargar">Kaart tonen</button>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Optica+Senti2+Moraira" target="_blank" rel="noopener">Openen in Google Maps</a>
+        </div>
       </div>
     </div>
 
@@ -1363,7 +1369,7 @@
   <!-- BANNER DE COOKIES (RGPD) -->
   <div class="cookies" id="cookies" role="dialog" aria-labelledby="cookies-titulo" aria-describedby="cookies-texto" hidden>
     <h2 id="cookies-titulo">Wij gebruiken cookies</h2>
-    <p id="cookies-texto">Wij gebruiken noodzakelijke technische cookies en, alleen als u akkoord gaat, analysecookies om de website te verbeteren. <a href="../cookies.html">Meer informatie (in het Spaans)</a>.</p>
+    <p id="cookies-texto">Wij gebruiken noodzakelijke technische cookies en, alleen als u akkoord gaat, cookies van derden voor de Google Maps-kaart. Geen analyse- of advertentiecookies. <a href="../cookies.html">Meer informatie (in het Spaans)</a>.</p>
     <div class="botones">
       <button class="boton boton--borde" id="cookies-rechazar">Weigeren</button>
       <button class="boton boton--principal" id="cookies-aceptar">Accepteren</button>
