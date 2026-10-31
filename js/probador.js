@@ -110,7 +110,12 @@ async function prepararDetector(runningMode) {
 // Puntos de MediaPipe: 33 y 263 = rabillos externos de los ojos, 168 = entrecejo.
 function dibujarGafas(puntos, ancho, alto, espejo) {
   const p = function (i) { return { x: (espejo ? 1 - puntos[i].x : puntos[i].x) * ancho, y: puntos[i].y * alto }; };
-  const izq = p(33), der = p(263), entrecejo = p(168);
+  const entrecejo = p(168);
+  // Ordenamos los rabillos de izquierda a derecha EN LA IMAGEN: así el ángulo
+  // sale bien tanto en la foto como en la cámara en espejo (antes, en espejo,
+  // el orden se invertía y la montura se dibujaba boca abajo).
+  let izq = p(33), der = p(263);
+  if (der.x < izq.x) { const t = izq; izq = der; der = t; }
   const distancia = Math.hypot(der.x - izq.x, der.y - izq.y);
   const angulo = Math.atan2(der.y - izq.y, der.x - izq.x);
   const img = cargarImagen(actual);
@@ -123,7 +128,8 @@ function dibujarGafas(puntos, ancho, alto, espejo) {
   ctx.save();
   ctx.translate(centroX + giro * distancia * 0.35, centroY + parseFloat(ajusteAltura.value) * distancia * 0.5);
   ctx.rotate(angulo);
-  ctx.scale(1 - Math.abs(giro) * 0.6, 1);
+  // En espejo, la montura también se refleja (como la verías en un espejo real)
+  ctx.scale((1 - Math.abs(giro) * 0.6) * (espejo ? -1 : 1), 1);
   ctx.drawImage(img, -anchoGafas / 2, -altoGafas * 0.47, anchoGafas, altoGafas);
   ctx.restore();
 }
