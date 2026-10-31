@@ -2557,3 +2557,149 @@ h2 em {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* =====================================================================
+   24. PROBADOR VIRTUAL DE GAFAS (probador.html)
+   ===================================================================== */
+.probador__rejilla {
+  display: grid;
+  gap: var(--espacio-l);
+}
+.probador__visor {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  max-height: 80vh;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 560px;
+  background-color: var(--marfil);
+  border-radius: var(--radio);
+  overflow: hidden;
+}
+.probador__visor canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.probador__inicio {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espacio-s);
+  padding: var(--espacio-m);
+  text-align: center;
+  background-color: var(--turquesa-claro);
+}
+.probador__inicio[hidden] {
+  display: none;
+}
+.probador__inicio .botones {
+  justify-content: center;
+}
+.probador__nota {
+  font-size: 13px;
+  color: var(--gris);
+}
+.probador__estado {
+  position: absolute;
+  left: var(--espacio-s);
+  right: var(--espacio-s);
+  bottom: var(--espacio-s);
+  padding: 10px 14px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--blanco);
+  background-color: rgba(28, 28, 28, 0.75);
+  border-radius: var(--radio);
+}
+.probador__estado[hidden] {
+  display: none;
+}
+.probador__titulo {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+.probador__modelo {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--turquesa);
+  margin-bottom: var(--espacio-s);
+}
+.probador__monturas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: var(--espacio-m);
+}
+.probador__montura {
+  padding: 10px 8px;
+  border: 1px solid var(--marfil-oscuro);
+  border-radius: var(--radio);
+  background-color: var(--blanco);
+  font-size: 11px;
+  line-height: 1.3;
+  color: var(--gris);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+.probador__montura img {
+  width: 100%;
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 6px;
+}
+.probador__montura strong {
+  color: var(--carbon);
+  font-weight: 600;
+}
+.probador__montura--activa {
+  border-color: var(--turquesa);
+  box-shadow: 0 0 0 2px var(--turquesa-claro);
+}
+.probador__ajustes {
+  display: grid;
+  gap: 10px;
+  margin-bottom: var(--espacio-m);
+}
+.probador__ajustes label {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--gris);
+}
+.probador__ajustes input {
+  accent-color: var(--turquesa);
+  width: 100%;
+}
+.probador__acciones {
+  margin-bottom: var(--espacio-s);
+}
+.probador__whatsapp {
+  display: inline-block;
+  font-weight: 600;
+  text-decoration: underline;
+  color: var(--turquesa-oscuro);
+  margin-bottom: var(--espacio-m);
+}
+.probador__aviso {
+  font-size: 12px;
+  color: var(--gris);
+}
+@media (min-width: 900px) {
+  .probador__rejilla {
+    grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+    align-items: start;
+  }
+  .probador__monturas {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
