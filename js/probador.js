@@ -32,6 +32,7 @@ const btnCamara = document.getElementById('btn-camara');
 const subirFoto = document.getElementById('subir-foto');
 const btnFoto = document.getElementById('btn-foto');
 const btnCambiar = document.getElementById('btn-cambiar');
+const btnGirar = document.getElementById('btn-girar');
 const btnWhatsapp = document.getElementById('btn-whatsapp');
 const nombreModelo = document.getElementById('modelo-nombre');
 const listaMonturas = document.getElementById('monturas');
@@ -41,6 +42,7 @@ const ajusteAltura = document.getElementById('ajuste-altura');
 let landmarker = null;
 let modo = null;              // 'camara' | 'foto'
 let foto = null;              // imagen subida
+let rotacion = 0;             // giro manual de la foto (0, 90, 180, 270)
 let puntosFoto = null;        // cara detectada en la foto
 let flujo = null;             // stream de la cámara
 let animacion = null;
@@ -169,32 +171,52 @@ async function iniciarCamara() {
 }
 
 // ---------- Modo foto ----------
+// Dibuja la foto (con el giro manual que toque) y las gafas encima
+function pintarFotoBase() {
+  const w = foto.width || foto.naturalWidth, h = foto.height || foto.naturalHeight;
+  const girada = rotacion % 180 !== 0;
+  const escala = Math.min(1, 1280 / Math.max(w, h));
+  lienzo.width = Math.round((girada ? h : w) * escala);
+  lienzo.height = Math.round((girada ? w : h) * escala);
+  ctx.save();
+  ctx.translate(lienzo.width / 2, lienzo.height / 2);
+  ctx.rotate(rotacion * Math.PI / 180);
+  ctx.drawImage(foto, -w * escala / 2, -h * escala / 2, w * escala, h * escala);
+  ctx.restore();
+}
 function dibujarFoto() {
   if (!foto) return;
-  ctx.drawImage(foto, 0, 0, lienzo.width, lienzo.height);
+  pintarFotoBase();
   if (puntosFoto) dibujarGafas(puntosFoto, lienzo.width, lienzo.height, false);
+}
+function detectarEnFoto() {
+  pintarFotoBase();
+  const r = landmarker.detect(lienzo);
+  puntosFoto = (r.faceLandmarks && r.faceLandmarks[0]) || null;
+  mostrarEstado(puntosFoto ? '' : 'No encontramos una cara en la foto. Prueba con otra, de frente y bien iluminada, o gírala con el botón.');
+  dibujarFoto();
 }
 
 async function cargarFoto(archivo) {
   try {
     await prepararDetector('IMAGE');
-    const url = URL.createObjectURL(archivo);
-    foto = new Image();
-    await new Promise(function (ok, mal) { foto.onload = ok; foto.onerror = mal; foto.src = url; });
-    // Limitamos el tamaño para que vaya fluido en el móvil
-    const escala = Math.min(1, 1280 / Math.max(foto.naturalWidth, foto.naturalHeight));
-    lienzo.width = Math.round(foto.naturalWidth * escala);
-    lienzo.height = Math.round(foto.naturalHeight * escala);
+    rotacion = 0;
+    // createImageBitmap respeta la orientación que guarda la cámara del móvil (EXIF):
+    // así las fotos no salen giradas. Si el navegador no lo soporta, usamos <img>.
+    try {
+      foto = await createImageBitmap(archivo, { imageOrientation: 'from-image' });
+    } catch (e) {
+      const url = URL.createObjectURL(archivo);
+      foto = new Image();
+      await new Promise(function (ok, mal) { foto.onload = ok; foto.onerror = mal; foto.src = url; });
+    }
     detenerCamara();
     modo = 'foto';
     inicio.hidden = true;
     btnFoto.disabled = false;
     btnCambiar.hidden = false;
-    ctx.drawImage(foto, 0, 0, lienzo.width, lienzo.height);
-    const r = landmarker.detect(lienzo);
-    puntosFoto = (r.faceLandmarks && r.faceLandmarks[0]) || null;
-    mostrarEstado(puntosFoto ? '' : 'No encontramos una cara en la foto. Prueba con otra, de frente y bien iluminada.');
-    dibujarFoto();
+    btnGirar.hidden = false;
+    detectarEnFoto();
   } catch (e) {
     mostrarEstado('No hemos podido abrir esa foto. Prueba con otra imagen.');
   }
@@ -213,6 +235,7 @@ function volverAlInicio() {
   inicio.hidden = false;
   btnFoto.disabled = true;
   btnCambiar.hidden = true;
+  btnGirar.hidden = true;
   btnCamara.disabled = false;
   mostrarEstado('');
 }
@@ -237,6 +260,7 @@ btnCamara.addEventListener('click', iniciarCamara);
 subirFoto.addEventListener('change', function () { if (subirFoto.files[0]) cargarFoto(subirFoto.files[0]); });
 btnFoto.addEventListener('click', guardarFoto);
 btnCambiar.addEventListener('click', volverAlInicio);
+btnGirar.addEventListener('click', function () { if (modo !== 'foto') return; rotacion = (rotacion + 90) % 360; detectarEnFoto(); });
 ajusteTamano.addEventListener('input', function () { if (modo === 'foto') dibujarFoto(); });
 ajusteAltura.addEventListener('input', function () { if (modo === 'foto') dibujarFoto(); });
 if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) btnCamara.hidden = true;
