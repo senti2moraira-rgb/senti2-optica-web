@@ -262,6 +262,11 @@ h2 em {
   flex-wrap: wrap;
   gap: 12px;
 }
+/* Botones centrados (p. ej. bajo las opiniones) */
+.botones--centrados {
+  justify-content: center;
+  margin-top: var(--espacio-l);
+}
 
 /* Enlace de texto con subrayado que se dibuja al pasar el ratón */
 .menu__lista > li > a,
@@ -1245,10 +1250,10 @@ h2 em {
   font-size: 13px;
   color: var(--gris);
 }
-.opiniones a {
+.opiniones a:not(.boton) {
   border-bottom: 1px solid currentColor;
 }
-/* Nota media: "4,8 ★★★★★ 12 reseñas en Google" */
+/* Nota media: "4,8 ★★★★★ 14 reseñas en Google" */
 .opiniones__nota {
   margin-top: var(--espacio-s);
   color: var(--gris);
