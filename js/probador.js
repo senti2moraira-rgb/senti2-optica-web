@@ -3,7 +3,7 @@
 // Usa MediaPipe Face Landmarker (se carga desde el CDN de jsDelivr y el
 // modelo desde Google) para encontrar los ojos y colocar la montura.
 // Todo se ejecuta en el navegador: ninguna imagen sale del dispositivo.
-// Para añadir una montura: pon su PNG con fondo transparente en img/probador/
+// Para añadir una montura: pon su WebP con fondo transparente en img/probador/
 // y añade una línea a la lista MONTURAS.
 // =====================================================================
 import { FaceLandmarker, FilesetResolver } from 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs';
@@ -47,7 +47,7 @@ let puntosFoto = null;        // cara detectada en la foto
 let flujo = null;             // stream de la cámara
 let animacion = null;
 let actual = MONTURAS[0];
-const imagenes = {};          // PNG de cada montura ya cargado
+const imagenes = {};          // Imagen de cada montura ya cargado
 
 function mostrarEstado(texto) {
   estado.textContent = texto;
@@ -58,7 +58,7 @@ function mostrarEstado(texto) {
 function cargarImagen(m) {
   if (imagenes[m.id]) return imagenes[m.id];
   const img = new Image();
-  img.src = 'img/probador/' + m.id + '.png';
+  img.src = 'img/probador/' + m.id + '.webp';
   imagenes[m.id] = img;
   return img;
 }
@@ -69,7 +69,7 @@ MONTURAS.forEach(function (m) {
   boton.className = 'probador__montura' + (m === actual ? ' probador__montura--activa' : '');
   boton.setAttribute('role', 'option');
   boton.setAttribute('aria-selected', m === actual);
-  boton.innerHTML = '<img src="img/probador/' + m.id + '.png" alt="" loading="lazy"><span>' + m.marca + '<br><strong>' + m.modelo + '</strong></span>';
+  boton.innerHTML = '<img src="img/probador/' + m.id + '.webp" alt="" loading="lazy"><span>' + m.marca + '<br><strong>' + m.modelo + '</strong></span>';
   boton.addEventListener('click', function () {
     actual = m;
     listaMonturas.querySelectorAll('.probador__montura').forEach(function (b) {
