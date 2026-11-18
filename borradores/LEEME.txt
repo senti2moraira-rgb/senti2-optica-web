@@ -1,0 +1,5 @@
+Trozos de la web retirados temporalmente. No están enlazados desde ninguna página.
+- equipo-es.html, equipo-en.html, equipo-de.html, equipo-fr.html, equipo-nl.html:
+  la sección "Nuestro equipo" de cada portada, retirada el 18/11/2026 hasta tener
+  fotos y nombres. Para recuperarla, se pega el contenido en index.html (y en las
+  portadas de cada idioma) donde está el comentario que lo indica.
