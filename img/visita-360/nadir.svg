@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Disco que tapa el trípode en el suelo de la visita virtual -->
+  <circle cx="200" cy="200" r="198" fill="#1c1c1c"/>
+  <circle cx="200" cy="200" r="186" fill="none" stroke="#1a9e96" stroke-width="4"/>
+  <!-- Gafas redondas del logotipo -->
+  <g transform="translate(80 120) scale(2)" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="35" cy="31" r="18"/>
+    <circle cx="85" cy="31" r="18"/>
+    <path d="M53 29 q7 -6 14 0"/>
+    <path d="M17 29 q-5 -1 -10 -3"/>
+    <path d="M103 29 q5 -1 10 -3"/>
+  </g>
+  <text x="200" y="290" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" letter-spacing="8" fill="#ffffff">SENTI2</text>
+</svg>

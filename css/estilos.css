@@ -2830,3 +2830,79 @@ h2 em {
   .franja-bf__largo { display: none; }
   .franja-bf__corto { display: inline; }
 }
+
+/* ==========================================================
+   VISITA VIRTUAL 360° — acceso desde "Nuestra tienda"
+   La foto panorámica se desliza despacio, como si giraras la cabeza
+   ========================================================== */
+.visita360 {
+  position: relative;
+  display: block;
+  min-height: 280px;
+  margin-bottom: var(--espacio-m);
+  border-radius: var(--radio);
+  overflow: hidden;
+  color: var(--blanco);
+  background-color: var(--carbon);
+  isolation: isolate;
+}
+.visita360__foto {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("../img/visita-360/entrada-mini.jpg") 0 50% / 960px 480px repeat-x;
+  animation: visita360-giro 60s linear infinite;
+}
+.visita360__foto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(28, 28, 28, 0.78) 0%, rgba(28, 28, 28, 0.35) 60%, rgba(28, 28, 28, 0.1) 100%);
+}
+@keyframes visita360-giro {
+  from { background-position-x: 0; }
+  to { background-position-x: -960px; } /* una vuelta completa: el ancho de la foto */
+}
+.visita360__texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espacio-s);
+  padding: var(--espacio-l) var(--espacio-m);
+  max-width: 560px;
+}
+.visita360__etiqueta {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #7fd6cf;
+}
+.visita360__titulo {
+  font-family: var(--letra-titulos);
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.1;
+}
+.visita360__boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: var(--radio);
+  background-color: var(--turquesa-oscuro);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background-color var(--transicion);
+}
+.visita360__boton svg { width: 18px; height: 18px; transition: transform var(--transicion); }
+.visita360:hover .visita360__boton { background-color: var(--turquesa); }
+.visita360:hover .visita360__boton svg { transform: translateX(4px); }
+@media (min-width: 768px) {
+  .visita360 { min-height: 340px; display: flex; align-items: center; }
+  .visita360__texto { padding: var(--espacio-l); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .visita360__foto { animation: none; }
+}
