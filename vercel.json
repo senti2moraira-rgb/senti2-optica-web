@@ -28,8 +28,13 @@
     },
     {
       "source": "/lentillas-de-fantasia.html",
-      "destination": "/lentes-de-contacto.html#fantasia",
-      "permanent": false
+      "destination": "/lentes-de-contacto.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/lentillas-de-fantasia-guia.html",
+      "destination": "/blog/",
+      "permanent": true
     }
   ]
 }

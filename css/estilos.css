@@ -2453,11 +2453,6 @@ h2 em {
   }
 }
 
-/* Tarjetas con foto real (lentillas de fantasía): sin fundir el fondo */
-.producto--foto .producto__fotos img {
-  mix-blend-mode: normal;
-}
-
 /* =====================================================================
    23. BLOG (blog/index.html y sus artículos)
    ===================================================================== */
