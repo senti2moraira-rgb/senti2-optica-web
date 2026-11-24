@@ -1,0 +1,188 @@
+/* =============================================================
+   VISITA VIRTUAL 360° — página a pantalla completa
+   ============================================================= */
+
+:root {
+  --carbon: #1c1c1c;
+  --turquesa: #1a9e96;
+  --turquesa-oscuro: #12756f;
+  --letra-titulos: "Cormorant Garamond", Georgia, serif;
+  --letra-texto: "Manrope", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body.visita {
+  margin: 0;
+  height: 100%;
+  background: var(--carbon);
+  color: #fff;
+  font-family: var(--letra-texto);
+  overflow: hidden;
+}
+
+.visita__visor {
+  position: fixed;
+  inset: 0;
+}
+
+/* ---------- Barra superior (como la tarjeta de Street View) ---------- */
+.visita__barra {
+  position: fixed;
+  z-index: 200;
+  top: max(12px, env(safe-area-inset-top));
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+.visita__barra > * { pointer-events: auto; }
+
+.visita__volver,
+.visita__titulo,
+.visita__cita {
+  background: rgba(28, 28, 28, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.visita__volver {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 52px;
+  padding: 0 14px 0 8px;
+  color: #fff;
+  text-decoration: none;
+}
+.visita__volver svg { width: 22px; height: 22px; }
+.visita__volver img { filter: brightness(0) invert(1); }
+.visita__volver:hover { background: rgba(28, 28, 28, 0.92); }
+
+.visita__titulo {
+  padding: 7px 16px 8px;
+  min-width: 0;
+}
+.visita__marca {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+.visita__titulo h1 {
+  margin: 0;
+  font-family: var(--letra-titulos);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.visita__cita {
+  margin-left: auto;
+  padding: 0 20px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  background: var(--turquesa);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.visita__cita:hover { background: var(--turquesa-oscuro); }
+
+:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+/* ---------- Ayuda inicial ---------- */
+.visita__ayuda {
+  position: fixed;
+  z-index: 150;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  max-width: calc(100% - 32px);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(28, 28, 28, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 999px;
+  font-size: 15px;
+  text-align: center;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.visita__ayuda-icono svg { width: 28px; height: 28px; display: block; }
+.visita__ayuda-icono { animation: arrastrar 2.2s ease-in-out infinite; }
+.visita__ayuda--oculta { opacity: 0; }
+
+@keyframes arrastrar {
+  0%, 100% { transform: translateX(-8px); }
+  50% { transform: translateX(8px); }
+}
+
+.visita__sinjs {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 16px;
+  text-align: center;
+}
+
+/* ---------- Ajustes del visor ---------- */
+.psv-container { font-family: var(--letra-texto); }
+
+/* Flechas del suelo: blancas con sombra, como en Street View */
+.psv-virtual-tour-arrow {
+  color: #fff !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.55));
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.psv-virtual-tour-arrow:hover,
+.psv-virtual-tour-arrow:focus-visible {
+  color: var(--turquesa) !important;
+  transform: scale(1.12);
+}
+
+.psv-virtual-tour-tooltip,
+.psv-tooltip {
+  font-family: var(--letra-texto);
+}
+
+.psv-navbar {
+  background: rgba(28, 28, 28, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.psv-gallery-item--active {
+  outline: 3px solid var(--turquesa);
+}
+
+@media (max-width: 600px) {
+  .visita__volver { height: 44px; padding-right: 10px; }
+  .visita__volver img { display: none; }
+  .visita__titulo { padding: 5px 12px 6px; }
+  .visita__titulo h1 { font-size: 19px; }
+  .visita__marca { font-size: 10px; }
+  .visita__cita { height: 44px; padding: 0 14px; font-size: 14px; }
+  .visita__ayuda { font-size: 14px; border-radius: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visita__ayuda-icono { animation: none; }
+}

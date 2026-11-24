@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>Visita virtual 360° · Senti2 Óptica Moraira</title>
+  <meta name="description" content="Recorre la óptica Senti2 de Moraira en 360°: escaparate, sala de monturas, zona de atención y gabinete de optometría, como si estuvieras dentro.">
+  <link rel="canonical" href="https://www.senti2moraira.com/visita-virtual.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Senti2 Óptica">
+  <meta property="og:title" content="Visita virtual 360° · Senti2 Óptica Moraira">
+  <meta property="og:description" content="Entra en la óptica Senti2 sin moverte de casa: recorrido en 360° por toda la tienda.">
+  <meta property="og:url" content="https://www.senti2moraira.com/visita-virtual.html">
+  <meta property="og:image" content="https://www.senti2moraira.com/img/tienda/senti2-tienda-expositor-mesa.jpg">
+  <meta name="theme-color" content="#1c1c1c">
+  <link rel="icon" href="img/logo/senti2-logo.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Visor 360 (Photo Sphere Viewer, licencia MIT), guardado en js/vendor -->
+  <link rel="stylesheet" href="js/vendor/psv-core.css">
+  <link rel="stylesheet" href="js/vendor/psv-markers-plugin.css">
+  <link rel="stylesheet" href="js/vendor/psv-virtual-tour-plugin.css">
+  <link rel="stylesheet" href="js/vendor/psv-gallery-plugin.css">
+  <link rel="stylesheet" href="css/visita-virtual.css">
+
+  <!-- Primera foto: el navegador empieza a descargarla cuanto antes -->
+  <link rel="preload" as="image" href="img/visita-360/exterior-entrada.jpg">
+</head>
+<body class="visita">
+
+  <header class="visita__barra">
+    <a class="visita__volver" href="./" aria-label="Volver a la web de Senti2">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <img src="img/logo/senti2-logo.svg" alt="" width="48" height="24">
+    </a>
+    <div class="visita__titulo">
+      <p class="visita__marca">Visita virtual 360°</p>
+      <h1 id="visita-lugar">Entrada a la óptica</h1>
+    </div>
+    <a class="visita__cita" href="./#cita">Pedir cita</a>
+  </header>
+
+  <main id="visor" class="visita__visor" aria-label="Visita virtual en 360 grados de la óptica Senti2. Arrastra para mirar alrededor y pulsa las flechas del suelo para moverte."></main>
+
+  <p class="visita__ayuda" id="visita-ayuda" role="status">
+    <span class="visita__ayuda-icono" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M9 11V5.5a1.5 1.5 0 013 0V10m0 0V4.5a1.5 1.5 0 013 0V10m0 0V6.5a1.5 1.5 0 013 0V14a6 6 0 01-6 6h-1.2a6 6 0 01-4.9-2.5L3.6 14a1.5 1.5 0 012.3-1.9L9 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    <span>Arrastra para mirar alrededor · Pulsa las <strong>flechas del suelo</strong> para avanzar</span>
+  </p>
+
+  <noscript><p class="visita__sinjs">Para ver la visita virtual necesitas activar JavaScript.</p></noscript>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./js/vendor/three.module.min.js",
+        "@photo-sphere-viewer/core": "./js/vendor/psv-core.module.js",
+        "@photo-sphere-viewer/markers-plugin": "./js/vendor/psv-markers-plugin.module.js",
+        "@photo-sphere-viewer/virtual-tour-plugin": "./js/vendor/psv-virtual-tour-plugin.module.js",
+        "@photo-sphere-viewer/gallery-plugin": "./js/vendor/psv-gallery-plugin.module.js"
+      }
+    }
+  </script>
+  <script type="module" src="js/visita-virtual.js"></script>
+</body>
+</html>
