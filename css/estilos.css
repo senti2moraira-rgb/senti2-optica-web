@@ -2815,6 +2815,11 @@ h2 em {
   white-space: nowrap;
 }
 .black-friday__pct small { font-size: 0.6em; }
+.black-friday__lujo {
+  font-weight: 600;
+  color: #f5c518;
+  margin: var(--espacio-s) 0 0;
+}
 .black-friday__nota {
   font-size: 0.88rem;
   opacity: 0.7;
