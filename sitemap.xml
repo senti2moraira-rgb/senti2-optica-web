@@ -78,7 +78,12 @@
   </url>
   <url>
     <loc>https://www.senti2moraira.com/blog/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.senti2moraira.com/blog/moscas-volantes.html</loc>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
